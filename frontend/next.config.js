@@ -15,7 +15,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "jellyfish-app-e6qcf.ondigitalocean.app",
+        hostname: "stingray-app-eopya.ondigitalocean.app",
       },
     ],
   },
