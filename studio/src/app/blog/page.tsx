@@ -30,9 +30,9 @@ async function getData() {
 }
 
 export default async function Blog() {
-  let articles = await loadArticles()
   const { data } = await getData()
-  console.log('data: ', data)
+  // console.log('data: ', data)
+  console.log(data[0].attributes.cover.data.attributes.formats.medium.url)
 
   return (
     <>
@@ -45,7 +45,7 @@ export default async function Blog() {
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="space-y-24 lg:space-y-32">
-          {data.map((article) => (
+          {data.map((article: any) => (
             <FadeIn key={article.id}>
               <article>
                 <Border className="pt-16">
@@ -86,6 +86,10 @@ export default async function Blog() {
                       <p className="mt-6 max-w-2xl text-base text-neutral-600">
                         {article.attributes.description}
                       </p>
+                      <img
+                        src={`http://localhost:1337${article.attributes.cover.data.attributes.formats.small.url}`}
+                        alt=""
+                      />
                       <Button
                         href={article.href}
                         aria-label={`Read more: ${article.attributes.title}`}
