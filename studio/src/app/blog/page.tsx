@@ -11,6 +11,7 @@ import { PageIntro } from '@/components/PageIntro'
 import { formatDate } from '@/lib/formatDate'
 import { loadArticles } from '@/lib/mdx'
 import imageChelseaHagon from '@/images/team/chelsea-hagon.jpg'
+import { getStrapiURL } from '../utils/api-helpers'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 }
 
 async function getData() {
-  const res = await fetch('http://localhost:1337/api/articles?populate=*', {
+  const res = await fetch(getStrapiURL() + '/api/articles?populate=*', {
     cache: 'no-store',
   })
   if (!res.ok) {
