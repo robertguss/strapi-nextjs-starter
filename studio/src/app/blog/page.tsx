@@ -52,8 +52,9 @@ export default async function Blog() {
                   <div className="relative lg:-mx-4 lg:flex lg:justify-end">
                     <div className="pt-10 lg:w-2/3 lg:flex-none lg:px-4 lg:pt-0">
                       <h2 className="font-display text-2xl font-semibold text-neutral-950">
-                        {/* <Link href={article.href}>{article.title}</Link> */}
-                        {article.attributes.title}
+                        <Link href={`/post/${article.attributes.slug}`}>
+                          {article.attributes.title}
+                        </Link>
                       </h2>
                       <dl className="lg:absolute lg:left-0 lg:top-0 lg:w-1/3 lg:px-4">
                         <dt className="sr-only">Published</dt>
@@ -86,12 +87,8 @@ export default async function Blog() {
                       <p className="mt-6 max-w-2xl text-base text-neutral-600">
                         {article.attributes.description}
                       </p>
-                      <img
-                        src={`http://localhost:1337${article.attributes.cover.data.attributes.formats.small.url}`}
-                        alt=""
-                      />
                       <Button
-                        href={article.href}
+                        href={`/post/${article.attributes.slug}`}
                         aria-label={`Read more: ${article.attributes.title}`}
                         className="mt-8"
                       >
