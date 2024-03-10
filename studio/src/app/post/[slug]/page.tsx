@@ -7,10 +7,11 @@ import { PageLinks } from '@/components/PageLinks'
 import { formatDate } from '@/lib/formatDate'
 import { type Article, type MDXEntry, loadArticles } from '@/lib/mdx'
 import dayjs from 'dayjs'
+import { getStrapiURL } from '../../utils/api-helpers'
 
 export async function generateStaticParams() {
   const articles = await fetch(
-    'http://localhost:1337/api/articles?populate=*',
+    getStrapiURL() + '/api/articles?populate=*',
   ).then((res) => res.json())
 
   return articles.data.map((article: any) => ({
@@ -25,7 +26,8 @@ export default async function Page({
   params: { slug: string; id: string }
 }) {
   const article = await fetch(
-    `http://localhost:1337/api/articles?filters[slug][$eq]=${params.slug}&populate=*`,
+    getStrapiURL() +
+      `/api/articles?filters[slug][$eq]=${params.slug}&populate=*`,
   ).then((res) => res.json())
 
   return (
@@ -51,7 +53,7 @@ export default async function Page({
         <FadeIn>
           <div className="mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
             <img
-              src={`http://localhost:1337${article.data[0].attributes.cover.data.attributes.formats.large.url}`}
+              src={`${getStrapiURL()}${article.data[0].attributes.cover.data.attributes.formats.large.url}`}
             />
             <div className="typography">
               {article.data[0].attributes.blocks[0].body}
