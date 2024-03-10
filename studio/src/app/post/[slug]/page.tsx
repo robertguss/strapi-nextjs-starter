@@ -8,6 +8,7 @@ import { formatDate } from '@/lib/formatDate'
 import { type Article, type MDXEntry, loadArticles } from '@/lib/mdx'
 import dayjs from 'dayjs'
 import { getStrapiURL } from '../../utils/api-helpers'
+import ReactMarkdown from 'react-markdown'
 
 export async function generateStaticParams() {
   const articles = await fetch(
@@ -60,7 +61,9 @@ export default async function Page({
             </div>
 
             <div className="typography">
-              {article.data[0].attributes.blocks[0].body}
+              <ReactMarkdown>
+                {article.data[0].attributes.blocks[0].body}
+              </ReactMarkdown>
             </div>
           </div>
         </FadeIn>
