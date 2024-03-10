@@ -52,9 +52,13 @@ export default async function Page({
 
         <FadeIn>
           <div className="mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-            <img
-              src={`${getStrapiURL()}${article.data[0].attributes.cover.data.attributes.formats.large.url}`}
-            />
+            <div className="group isolate my-10 overflow-hidden rounded-4xl bg-neutral-100 max-sm:-mx-6">
+              <img
+                src={`${getStrapiURL()}${article.data[0].attributes.cover.data.attributes.formats.large.url}`}
+                className="aspect-[16/10] w-full object-cover"
+              />
+            </div>
+
             <div className="typography">
               {article.data[0].attributes.blocks[0].body}
             </div>
